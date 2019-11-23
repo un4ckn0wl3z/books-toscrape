@@ -15,6 +15,9 @@ class BookParser:
     def __init__(self, parent):
         self.parent = parent
 
+    def __repr__(self):
+        return f'<Books {self.name}, £{self.price}, ({self.rating} stars)>'
+
     @property
     def name(self):
         locator = BookLocators.NAME_LOCATOR
@@ -26,13 +29,13 @@ class BookParser:
     def link(self):
         locator = BookLocators.LINK_LOCATOR
         item_link = self.parent.select_one(locator).attrs['href']
+        return item_link
 
     @property
     def price(self):
         locator = BookLocators.PRICE_LOCATOR
         item_price = self.parent.select_one(locator).string
-
-        pattern = '£([0-9]+\.[0-9]+])'
+        pattern = '£([0-9]+\.[0-9]+)'
         matcher = re.search(pattern, item_price)
         return float(matcher.group(1))
 
