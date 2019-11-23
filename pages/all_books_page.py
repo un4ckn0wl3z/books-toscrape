@@ -22,7 +22,7 @@ class AllBooksPage:
     def page_count(self):
         logger.debug('Finding all number of catalogue pages available...')
         content = self.soup.select_one(AllBooksPageLocators.PAGER).string
-        logger.info(f'Found number of catalogue pages available `{content}`.')
+        logger.info(f'Found number of catalogue pages available `{content.strip()}`.')
         pattern = 'Page [0-9]+ of ([0-9]+)'
         matcher = re.search(pattern, content)
         pages = int(matcher.group(1))
