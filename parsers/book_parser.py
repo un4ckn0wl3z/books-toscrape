@@ -4,6 +4,14 @@ from locators.book_locators import BookLocators
 
 
 class BookParser:
+    RATINGS = {
+        'One': 1,
+        'Two': 2,
+        'Three': 3,
+        'Four': 4,
+        'Five': 5
+    }
+
     def __init__(self, parent):
         self.parent = parent
 
@@ -34,4 +42,5 @@ class BookParser:
         star_rating_tag = self.parent.select_one(locator)
         classes = star_rating_tag.attrs['class']
         rating_classes = [r for r in classes if r != 'star-rating']
-        return rating_classes[0]
+        rating_number = BookParser.RATINGS.get(rating_classes[0])
+        return rating_number
