@@ -22,7 +22,7 @@ async def get_multiple_pages(loop, *urls):
 
 
 loop = asyncio.get_event_loop()
-urls = ['http://www.chauat.ac.th/' for i in range(1000)]
+urls = ['https://www.google.com/' for i in range(100)]
 start = time.time()
 loop.run_until_complete(get_multiple_pages(loop, *urls))
 print(f'All took {time.time() - start}')
